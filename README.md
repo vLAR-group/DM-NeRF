@@ -14,7 +14,7 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
 ## Decomposition and Manipulation:
 
 <div align=center>
-     <img float=left src="/figs/decomposition.gif" width=43%>&nbsp<img float=right src="/figs/manipulation.gif" width=56.9%> <br/></br>
+     <img float=left src="/figs/decomposition.gif" width=43%>&nbsp<img float=right src="/figs/manipulation.gif" width=56.5%> <br/></br>
 </div>
 
 ## Qualitative Results
