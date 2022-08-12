@@ -41,3 +41,12 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
 </div>
 
 
+### Citation
+If you find our work useful in your research, please consider citing:
+
+      @article{wang2022dmnerf,
+      title={DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images},
+      author={Bing, Wang and Chen, Lu and Yang, Bo},
+      journal={arXiv preprint arXiv:2204.09138},
+      year={2022}
+    }
