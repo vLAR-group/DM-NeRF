@@ -1,2 +1,43 @@
-# DM-NeRF
-This is the official repository of the DM-NeRF.
+[![arXiv](https://img.shields.io/badge/arXiv-2204.09138-b31b1b.svg)](https://arxiv.org/abs/2204.09138)
+
+# DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images
+
+This is the official repository of the **DM-NeRF**. For technical details, please refer to:
+
+**DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images** <br />
+[Bing Wang<sup>*</sup>](https://www.cs.ox.ac.uk/people/bing.wang/), [Lu Chen<sup>*</sup>](https://chenlu-china.github.io/), [Bo Yang](https://yang7879.github.io/) <br />
+[**Paper**]() | [**Supplementary**]() | [**Video**](https://www.youtube.com/watch?v=jLJqpZ3PyGs)
+
+## Video (Youtube)
+<p align="center"> <a href="https://www.youtube.com/watch?v=jLJqpZ3PyGs"><img src="./figs/DM-NeRF.png" width="80%"></a> </p>
+
+## Decomposition and Manipulation:
+
+<div align=center>
+     <img float=left src="/figs/decomposition.gif" width=40%>&nbsp<img float=right src="/figs/manipulation.gif" width=53%> <br/></br>
+</div>
+
+## Qualitative Results
+
+### Scene Decomposition
+<div align=center>
+     <img src="/figs/decomposition_scenes.png" width=85% > <br/></br>
+     
+</div>
+
+### Object Manipulation
+
+#### Rigid Transformation
+
+<div align=center>
+     <img src="/figs/edit_replica.png" width=80% > <br/>
+     <img src="/figs/edit_dmsr.png" width=80% > <br/>
+</div>
+
+#### Deformable Manipulation
+
+<div align=center>
+     <img src="/figs/edit_deformable.png" width=80% > <br/>
+</div>
+
+
