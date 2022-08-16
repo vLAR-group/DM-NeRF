@@ -6,7 +6,7 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
 
 **DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images** <br />
 [Bing Wang](https://www.cs.ox.ac.uk/people/bing.wang/), [Lu Chen](https://chenlu-china.github.io/), [Bo Yang<sup>*</sup>](https://yang7879.github.io/) <br />
-[**Paper**]() | [**Supplementary**]() | [**Video**](https://www.youtube.com/watch?v=yQtpPfM5dTA)
+[**Paper**](https://arxiv.org/abs/2208.07227) | [**Video**](https://www.youtube.com/watch?v=yQtpPfM5dTA)
 
 
 <p align="center"> <img src="./figs/Fig2_architecture.png" width="100%"> </p>
