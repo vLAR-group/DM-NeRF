@@ -53,3 +53,13 @@ If you find our work useful in your research, please consider citing:
       journal={arXiv preprint arXiv:2208.07227},
       year={2022}
     }
+
+### License
+Licensed under the CC BY-NC-SA 4.0 license, see [LICENSE](./LICENSE).
+
+### Updates
+* 15/8/2022: Initial release！
+
+## Related Repos
+1. [GRF: Learning a General Radiance Field for 3D Representation and Rendering](https://github.com/alextrevithick/GRF) ![GitHub stars](https://img.shields.io/github/stars/alextrevithick/GRF.svg?style=flat&label=Star)
+2. [3D-BoNet: Learning Object Bounding Boxes for 3D Instance Segmentation on Point Clouds](https://github.com/Yang7879/3D-BoNet) ![GitHub stars](https://img.shields.io/github/stars/Yang7879/3D-BoNet.svg?style=flat&label=Star)
