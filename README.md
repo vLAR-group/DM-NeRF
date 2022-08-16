@@ -8,16 +8,17 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
 [Bing Wang](https://www.cs.ox.ac.uk/people/bing.wang/), [Lu Chen](https://chenlu-china.github.io/), [Bo Yang<sup>*</sup>](https://yang7879.github.io/) <br />
 [**Paper**]() | [**Supplementary**]() | [**Video**](https://www.youtube.com/watch?v=yQtpPfM5dTA)
 
-## Video (Youtube)
-<p align="center"> <a href="https://www.youtube.com/watch?v=yQtpPfM5dTA"><img src="./figs/DM-NeRF.png" width="80%"></a> </p>
 
-## Decomposition and Manipulation:
+<p align="center"> <img src="./figs/Fig2_architecture.png" width="100%"> </p>
+
+
+## (1) Decomposition and Manipulation:
 
 <div align=center>
      <img float=left src="/figs/decomposition.gif" width=42.5%>&nbsp<img float=right src="/figs/manipulation.gif" width=56.5%> <br/></br>
 </div>
 
-## Qualitative Results
+## (2) Qualitative Results
 
 ### Scene Decomposition
 <div align=center>
@@ -40,6 +41,8 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
      <img src="/figs/edit_deformable.png" width=80% > <br/>
 </div>
 
+## (4) Video (Youtube)
+<p align="center"> <a href="https://www.youtube.com/watch?v=yQtpPfM5dTA"><img src="./figs/DM-NeRF.png" width="80%"></a> </p>
 
 ### Citation
 If you find our work useful in your research, please consider citing:
