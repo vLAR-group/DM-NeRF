@@ -61,5 +61,6 @@ Licensed under the CC BY-NC-SA 4.0 license, see [LICENSE](./LICENSE).
 * 15/8/2022: Initial release！
 
 ## Related Repos
-1. [GRF: Learning a General Radiance Field for 3D Representation and Rendering](https://github.com/alextrevithick/GRF) ![GitHub stars](https://img.shields.io/github/stars/alextrevithick/GRF.svg?style=flat&label=Star)
-2. [3D-BoNet: Learning Object Bounding Boxes for 3D Instance Segmentation on Point Clouds](https://github.com/Yang7879/3D-BoNet) ![GitHub stars](https://img.shields.io/github/stars/Yang7879/3D-BoNet.svg?style=flat&label=Star)
+1. [RangeUDF: Semantic Surface Reconstruction from 3D Point Clouds](https://github.com/vLAR-group/RangeUDF) ![GitHub stars](https://img.shields.io/github/stars/vLAR-group/RangeUDF.svg?style=flat&label=Star)
+2. [GRF: Learning a General Radiance Field for 3D Representation and Rendering](https://github.com/alextrevithick/GRF) ![GitHub stars](https://img.shields.io/github/stars/alextrevithick/GRF.svg?style=flat&label=Star)
+3. [3D-BoNet: Learning Object Bounding Boxes for 3D Instance Segmentation on Point Clouds](https://github.com/Yang7879/3D-BoNet) ![GitHub stars](https://img.shields.io/github/stars/Yang7879/3D-BoNet.svg?style=flat&label=Star)
