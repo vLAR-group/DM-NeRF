@@ -1,4 +1,6 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2208.07227-b31b1b.svg)](https://arxiv.org/abs/2208.07227)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=vLAR-group/DM-NeRF)
+[![License CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC4.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
 
 # DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images
 
