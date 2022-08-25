@@ -1,3 +1,7 @@
+[![arXiv](https://img.shields.io/badge/arXiv-2208.07227-b31b1b.svg)](https://arxiv.org/abs/2208.07227)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=vLAR-group/DM-NeRF)
+[![License CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC4.0-blue.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
+
 # DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images
 
 This is the official repository of the **DM-NeRF**. For technical details, please refer to:
@@ -22,7 +26,6 @@ The architecture of our proposed DM-NeRF. Given a 3D point $\boldsymbol{p}$, we 
 ### Scene Decomposition
 <div align=center>
      <img src="/figs/decomposition_scenes.png" width=85% > <br/></br>
-     
 </div>
 
 ### Object Manipulation
@@ -121,7 +124,7 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.t
 ```
 
 ## 4. Video (Youtube)
-<p align="center"> <a href="https://www.youtube.com/watch?v=iE0RwmdLIzk"><img src="/figs/DM-NeRF.png" width="80%"></a> </p>
+<p align="center"> <a href="https://www.youtube.com/watch?v=iE0RwmdLIzk"><img src="/figs/mesh.gif" width="80%"></a> </p>
 
 ### Citation
 If you find our work useful in your research, please consider citing:
