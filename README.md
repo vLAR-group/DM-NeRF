@@ -128,6 +128,7 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.t
 
 ### Citation
 If you find our work useful in your research, please consider citing:
+
       @article{wang2022dmnerf,
       title={DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images},
       author={Bing, Wang and Chen, Lu and Yang, Bo},
