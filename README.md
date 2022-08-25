@@ -7,7 +7,7 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
 [**Paper**](https://arxiv.org/abs/2208.07227) | [**Video**](https://www.youtube.com/watch?v=yQtpPfM5dTA)
 
 
-<p align="center"> <img src="./figs/architecture.png" width="100%"> </p>
+<p align="center"> <img src="/figs/architecture.png" width="100%"> </p>
 
 The architecture of our proposed DM-NeRF. Given a 3D point $\boldsymbol{p}$, we learn an object code through a series of loss functions using both 2D and 3D supervision signals.
 
@@ -121,7 +121,7 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.t
 ```
 
 ## 4. Video (Youtube)
-<p align="center"> <a href="https://www.youtube.com/watch?v=iE0RwmdLIzk"><img src="./figs/DM-NeRF.png" width="80%"></a> </p>
+<p align="center"> <a href="https://www.youtube.com/watch?v=iE0RwmdLIzk"><img src="/figs/DM-NeRF.png" width="80%"></a> </p>
 
 ### Citation
 If you find our work useful in your research, please consider citing:
