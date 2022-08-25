@@ -8,14 +8,14 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
 
 **DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images** <br />
 [Bing Wang](https://www.cs.ox.ac.uk/people/bing.wang/), [Lu Chen](https://chenlu-china.github.io/), [Bo Yang<sup>*</sup>](https://yang7879.github.io/) <br />
-[**Paper**](https://arxiv.org/abs/2208.07227) | [**Video**](https://www.youtube.com/watch?v=yQtpPfM5dTA) | [**DM-SR**](https://github.com/vLAR-group/DM-NeRF)
+[**Paper**](https://arxiv.org/abs/2208.07227) | [**Video**](https://www.youtube.com/watch?v=iE0RwmdLIzk) | [**DM-SR**](https://github.com/vLAR-group/DM-NeRF)
 
 
 <p align="center"> <img src="/figs/architecture.png" width="90%"> </p>
 
 The architecture of our proposed DM-NeRF. Given a 3D point $\boldsymbol{p}$, we learn an object code through a series of loss functions using both 2D and 3D supervision signals.
 
-## 1. [Decomposition and Manipulation](https://www.youtube.com/watch?v=yQtpPfM5dTA)
+## 1. Decomposition and Manipulation:
 
 <div align=center>
      <img float=left src="/figs/decomposition.gif" width=42.5%>&nbsp<img float=right src="/figs/manipulation.gif" width=56.5%> <br/></br>
