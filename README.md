@@ -15,7 +15,7 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
 
 The architecture of our proposed DM-NeRF. Given a 3D point $\boldsymbol{p}$, we learn an object code through a series of loss functions using both 2D and 3D supervision signals.
 
-## 1. Decomposition and Manipulation:
+## 1. [Decomposition and Manipulation](https://www.youtube.com/watch?v=yQtpPfM5dTA)
 
 <div align=center>
      <img float=left src="/figs/decomposition.gif" width=42.5%>&nbsp<img float=right src="/figs/manipulation.gif" width=56.5%> <br/></br>
