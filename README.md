@@ -11,7 +11,7 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
 [**Paper**](https://arxiv.org/abs/2208.07227) | [**Video**](https://www.youtube.com/watch?v=yQtpPfM5dTA) | [**DM-SR**](https://github.com/vLAR-group/DM-NeRF)
 
 
-<p align="center"> <img src="/figs/architecture.png" width="100%"> </p>
+<p align="center"> <img src="/figs/architecture.png" width="90%"> </p>
 
 The architecture of our proposed DM-NeRF. Given a 3D point $\boldsymbol{p}$, we learn an object code through a series of loss functions using both 2D and 3D supervision signals.
 
