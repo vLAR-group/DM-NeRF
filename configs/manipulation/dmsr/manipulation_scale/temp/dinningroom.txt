@@ -1,0 +1,23 @@
+expname = dinningroom
+basedir = ./editor_logs/synthetic_rooms/0050
+datadir = ./data/synthetic_rooms/dinningroom
+
+lrate_decay = 500
+
+N_samples = 64
+N_importance = 128
+N_train = 3072
+N_test = 4096
+
+
+near = 1.5
+far = 8.0
+testskip = 5
+
+editor = True
+editor_mode = scale
+target_label = 1
+
+over_penalize
+tolerance = 0.05
+deta_w = 0.05

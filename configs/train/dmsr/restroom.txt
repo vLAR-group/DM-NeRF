@@ -1,0 +1,19 @@
+expname = restroom
+basedir = ./logs/dmsr
+datadir = ./data/dmsr/restroom
+
+lrate_decay = 500
+
+N_samples = 64
+N_importance = 128
+N_train = 3072
+N_test = 4096
+
+
+near = 3.6
+far = 15.0
+testskip = 1
+
+over_penalize
+tolerance = 0.05
+deta_w = 0.05
