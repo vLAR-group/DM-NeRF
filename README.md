@@ -17,43 +17,17 @@ The architecture of our proposed DM-NeRF. Given a 3D point $\boldsymbol{p}$, we 
 
 ## 1. Reconstruction and Decomposition:
 
-<p align="center"> <img src="/figs/mesh.gif" width="90%"></a> </p>
+<p align="center"> <img src="/figs/mesh.gif" width="80%"></a> </p>
 
 ## 2. Decomposition:
 
-<p align="center"> <img src="/figs/decomposition.gif" width="90%"></a> </p>
+<p align="center"> <img src="/figs/decomposition.gif" width="80%"></a> </p>
 
 ## 3. Manipulation:
 
-<p align="center"> <img src="/figs/manipulation.gif" width="90%"></a> </p>
+<p align="center"> <img src="/figs/manipulation.gif" width="80%"></a> </p>
 
-<div align=center>
-     <img float=left src="/figs/decomposition.gif" width=42.5%>&nbsp<img float=right src="/figs/manipulation.gif" width=56.5%> <br/></br>
-</div>
-
-## 2. Qualitative Results
-
-### Scene Decomposition
-<div align=center>
-     <img src="/figs/decomposition_scenes.png" width=85% > <br/></br>
-</div>
-
-### Object Manipulation
-
-#### Rigid Transformation
-
-<div align=center>
-     <img src="/figs/edit_replica.png" width=80% > <br/>
-     <img src="/figs/edit_dmsr.png" width=80% > <br/>
-</div>
-
-#### Deformable Manipulation
-
-<div align=center>
-     <img src="/figs/edit_deformable.png" width=80% > <br/>
-</div>
-
-## 3. Installation
+## 4. Installation
 
 DM-NeRF uses a Conda environment that makes it easy to install all dependencies.
 
@@ -68,7 +42,7 @@ pip install -r environment.txt
 
 3. Activate the environment: `conda activate DM-NeRF`.
 
-### Datasets
+### 4.1 Datasets
 
 In this paper, we consider the following three different datasets:
 
@@ -84,7 +58,7 @@ In this paper, we use 7 scenes `office0, office2, office3, office4, room0, room1
 
 In this paper, we use 8 scenes `scene0010_00, scene0012_00, scene0024_00, scene0033_00, scene0038_00, scene0088_00, scene0113_00, scene0192_00` from the ScanNet Dataset.
 
-### Training
+### 4.2 Training
 
 For the training of our standard DM-NeRF , you can simply run the following command with a chosen config file specifying data directory and hyper-params.
 
@@ -96,7 +70,7 @@ CUDA_VISIBLE_DEVICES=0 python -u train_dmsr.py --config configs/train/dmsr/study
 Other working modes and set-ups can be also made via the above command by choosing different config files.
 
 
-### Evaluation
+### 4.3 Evaluation
 
 In this paper, we use PSNR, SSIM, LPIPS for rendering evaluation, and mAPs for both decomposition and manipulation evluations.
 
@@ -133,7 +107,7 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.t
 
 ```
 
-## 4. [Video (Youtube)](https://www.youtube.com/watch?v=iE0RwmdLIzk)
+## 5. [Video (Youtube)](https://www.youtube.com/watch?v=iE0RwmdLIzk)
 <p align="center"> <a href="https://www.youtube.com/watch?v=iE0RwmdLIzk"><img src="/figs/mesh.gif" width="80%"></a> </p>
 
 ### Citation
@@ -150,6 +124,7 @@ If you find our work useful in your research, please consider citing:
 Licensed under the CC BY-NC-SA 4.0 license, see [LICENSE](./LICENSE).
 
 ### Updates
+* 25/8/2022: Code release！
 * 15/8/2022: Initial release！
 
 ## Related Repos
