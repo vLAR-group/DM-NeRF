@@ -107,8 +107,8 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.t
 
 ```
 
-## 5. [Video (Youtube)](https://www.youtube.com/watch?v=iE0RwmdLIzk)
-<p align="center"> <a href="https://www.youtube.com/watch?v=iE0RwmdLIzk"><img src="/figs/mesh.gif" width="80%"></a> </p>
+## 5. [Video (Youtube)](https://www.youtube.com/watch?v=yQtpPfM5dTA)
+<p align="center"> <a href="https://www.youtube.com/watch?v=iE0RwmdLIzk"><img src="/figs/DM-NeRF.png" width="70%"></a> </p>
 
 
 ### Citation
