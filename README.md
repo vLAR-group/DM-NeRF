@@ -46,15 +46,15 @@ pip install -r environment.txt
 
 In this paper, we consider the following three different datasets:
 
-#### [DM-SR](https://github.com/vLAR-group/DM-NeRF)
+#### (1) [DM-SR](https://github.com/vLAR-group/DM-NeRF)
 
 To the best of our knowledge, there is no existing 3D scene dataset suitable for quantitative evaluation of geometry manipulation. Therefore, we create a synthetic dataset with 8 types of different and complex indoor rooms, called DM-SR. The room types and designs follow [Hypersim Dataset](https://github.com/apple/ml-hypersim). Overall, we firstly render the static scenes, and then manipulate each scene followed by second round rendering. Each scene has a physical size of about 12x12x3 meters with around 8 objects.  We will keep updating it for future research in the community. 
 
-#### [Replica](https://github.com/facebookresearch/Replica-Dataset)
+#### (2) [Replica](https://github.com/facebookresearch/Replica-Dataset)
 
 In this paper, we use 7 scenes `office0, office2, office3, office4, room0, room1, room2` from the [Replica Dataset](https://github.com/facebookresearch/Replica-Dataset). We request the authors of [Semantic-NeRF](https://github.com/Harry-Zhi/semantic_nerf) to generate color images and 2D object masks with camera poses at 640x480 pixels for each of 7 scenes. Each scene has 59~93 objects with very diverse sizes. Details of camera settings and trajectories can be found in the Semantic-NeRF repository.
 
-#### [ScanNet](http://www.scan-net.org/)
+#### (3) [ScanNet](http://www.scan-net.org/)
 
 In this paper, we use 8 scenes `scene0010_00, scene0012_00, scene0024_00, scene0033_00, scene0038_00, scene0088_00, scene0113_00, scene0192_00` from the ScanNet Dataset.
 
@@ -74,7 +74,7 @@ Other working modes and set-ups can be also made via the above command by choosi
 
 In this paper, we use PSNR, SSIM, LPIPS for rendering evaluation, and mAPs for both decomposition and manipulation evluations.
 
-#### Decomposition
+#### (1) Decomposition
 
 For decomposition evaluation, you need set `render=True` and `log_time="your log folder name"` in a config file. And then run:
 
@@ -84,7 +84,7 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.t
 
 ```
 
-#### Manipulation
+#### (2) Manipulation
 
 ##### Quantitative Evaluation
 
