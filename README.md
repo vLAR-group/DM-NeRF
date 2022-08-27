@@ -11,11 +11,11 @@
 
 The architecture of our proposed DM-NeRF. Given a 3D point $\boldsymbol{p}$, we learn an object code through a series of loss functions using both 2D and 3D supervision signals.
 
-## 1. Reconstruction and Decomposition:
+## 1. Decomposition and Reconstruction:
 
 <p align="center"> <img src="/figs/mesh.gif" width="70%"></a> </p>
 
-## 2. Decomposition:
+## 2. Decomposition and Rendering:
 
 <p align="center"> <img src="/figs/decomposition.gif" width="70%"></a> </p>
 
