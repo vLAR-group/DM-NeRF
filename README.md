@@ -11,21 +11,21 @@ This is the official repository of the **DM-NeRF**. For technical details, pleas
 [**Paper**](https://arxiv.org/abs/2208.07227) | [**Video**](https://www.youtube.com/watch?v=iE0RwmdLIzk) | [**DM-SR**](https://github.com/vLAR-group/DM-NeRF)
 
 
-<p align="center"> <img src="/figs/architecture.png" width="90%"> </p>
+<p align="center"> <img src="/figs/architecture.png" width="80%"> </p>
 
 The architecture of our proposed DM-NeRF. Given a 3D point $\boldsymbol{p}$, we learn an object code through a series of loss functions using both 2D and 3D supervision signals.
 
 ## 1. Reconstruction and Decomposition:
 
-<p align="center"> <img src="/figs/mesh.gif" width="80%"></a> </p>
+<p align="center"> <img src="/figs/mesh.gif" width="70%"></a> </p>
 
 ## 2. Decomposition:
 
-<p align="center"> <img src="/figs/decomposition.gif" width="80%"></a> </p>
+<p align="center"> <img src="/figs/decomposition.gif" width="70%"></a> </p>
 
 ## 3. Manipulation:
 
-<p align="center"> <img src="/figs/manipulation.gif" width="80%"></a> </p>
+<p align="center"> <img src="/figs/manipulation.gif" width="70%"></a> </p>
 
 ## 4. Installation
 
@@ -109,6 +109,7 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.t
 
 ## 5. [Video (Youtube)](https://www.youtube.com/watch?v=iE0RwmdLIzk)
 <p align="center"> <a href="https://www.youtube.com/watch?v=iE0RwmdLIzk"><img src="/figs/mesh.gif" width="80%"></a> </p>
+
 
 ### Citation
 If you find our work useful in your research, please consider citing:
