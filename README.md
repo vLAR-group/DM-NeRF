@@ -4,7 +4,7 @@
 
 # DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images
 
-This is the official repository of the **DM-NeRF**. For technical details, please refer to:
+**DM-NeRF** in PyTorch.
 
 **DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images** <br />
 [Bing Wang](https://www.cs.ox.ac.uk/people/bing.wang/), [Lu Chen](https://chenlu-china.github.io/), [Bo Yang<sup>*</sup>](https://yang7879.github.io/) <br />
