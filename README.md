@@ -29,14 +29,16 @@ DM-NeRF uses a Conda environment that makes it easy to install all dependencies.
 
 1. Create the `DM-NeRF` Conda environment (Python 3.7) with [miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
+```bash
+conda create --name DM-NeRF python=3.7
+conda activate DM-NeRF
+```
+
 2. Install all dependencies by running:
 
 ```bash
-pip install pytorch==1.8.1 torchVision==0.9.1 torchaudio===0.8.1
-pip install -r environment.txt
+pip install -r requirements.txt
 ```
-
-3. Activate the environment: `conda activate DM-NeRF`.
 
 ### 4.1 Datasets
 
