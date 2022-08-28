@@ -17,8 +17,8 @@ def test():
     with torch.no_grad():
         if args.render:
             print('Rendering......')
-            testsavedir = os.path.join(args.basedir, args.expname, args.log_time, 'render_{}_{:06d}'
-                                       .format('test' if args.render_test else 'path', iteration))
+            testsavedir = os.path.join(args.basedir, args.expname, args.log_time,
+                                       'render_test_{:06d}'.format(iteration))
             os.makedirs(testsavedir, exist_ok=True)
             mathed_file = os.path.join(testsavedir, 'matching_log.txt')
             i_train, i_test = i_split
@@ -37,7 +37,7 @@ def test():
             in_instances = torch.Tensor(instances).type(torch.int8)
             in_poses = torch.Tensor(poses)
             pose_generator.generate_poses_eval(args)
-            trans_dicts = loader_dmsr_mani.load_mani_poses(args)
+            trans_dicts = pose_generator.load_mani_poses(args)
             testsavedir = os.path.join(args.basedir, args.expname, args.log_time,
                                        'mani_eval_{:06d}'.format(iteration))
             os.makedirs(testsavedir, exist_ok=True)
@@ -83,29 +83,18 @@ if __name__ == '__main__':
         images, poses, hwk, instances, ins_colors, args.ins_num = loader_dmsr_mani.load_data(args)
     else:
         images, poses, hwk, i_split, instances, ins_colors, args.ins_num, objs, view_poses, ins_map = loader_dmsr.load_data(args)
-    print('Loaded blender', images.shape, hwk, args.datadir)
+    print('Load data from', args.datadir)
 
-    args.perturb = False
     H, W, K = hwk
-
+    args.perturb = False
     position_embedder, view_embedder, model_coarse, model_fine, args = create_nerf(args)
 
-    iteration = 0
-    if args.ft_path is not None and args.ft_path != 'None':
-        ckpts = [args.ft_path]
-    else:
-        ckpts = [os.path.join(args.basedir, args.expname, args.log_time, "200000.tar")]
-    print('Found ckpts', ckpts)
-    if len(ckpts) > 0 and not args.no_reload:
-        ckpt_path = ckpts[-1]
-        print('Reloading from', ckpt_path)
-        if torch.cuda.is_available():
-            ckpt = torch.load(ckpt_path)
-        else:
-            ckpt = torch.load(ckpt_path, map_location=torch.device('cpu'))
-        iteration = ckpt['iteration']
-        # Load model
-        model_coarse.load_state_dict(ckpt['network_coarse_state_dict'])
-        model_fine.load_state_dict(ckpt['network_fine_state_dict'])
+    ckpt_path = os.path.join(args.basedir, args.expname, args.log_time, args.test_model)
+    ckpt = torch.load(ckpt_path)
+    iteration = ckpt['iteration']
+    # Load model
+    model_coarse.load_state_dict(ckpt['network_coarse_state_dict'])
+    model_fine.load_state_dict(ckpt['network_fine_state_dict'])
+
 
     test()

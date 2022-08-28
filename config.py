@@ -37,10 +37,6 @@ def config_parser():
                         help='number of rays processed in parallel, decrease if running out of memory')
     parser.add_argument("--is_train", type=bool, default=True,
                         help='number of pts sent through network in parallel, decrease if running out of memory')
-    parser.add_argument("--no_reload", action='store_true',
-                        help='do not reload weights from saved ckpt')
-    parser.add_argument("--ft_path", type=str, default=None,
-                        help='specific weights npy file to reload for coarse network')
     # semantic instance network options
 
     # rendering options
@@ -57,28 +53,16 @@ def config_parser():
                         help='log2 of max freq for positional encoding (3D location)')
     parser.add_argument("--multires_views", type=int, default=4,
                         help='log2 of max freq for positional encoding (2D direction)')
-
     parser.add_argument("--render", action='store_true',
                         help='do not optimize, reload weights and render out render_poses path')
-    parser.add_argument("--render_test", action='store_true',
-                        help='render the test set instead of render_poses path')
-    parser.add_argument("--render_factor", type=int, default=0,
-                        help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')
-
-    # training options
-    parser.add_argument("--precrop_iters", type=int, default=0,
-                        help='number of steps to train on central crops')
-    parser.add_argument("--precrop_frac", type=float,
-                        default=.5, help='fraction of img taken for central crops')
+    parser.add_argument("--test_model", type=str, default='000000.tar',
+                        help='where to store ckpts and logs')
 
     # datasets options
     parser.add_argument("--testskip", type=int, default=10,
                         help='will load 1/N images from test/val sets, useful for large datasets like deepvoxels')
     parser.add_argument("--resize", action='store_true',
                         help='will resize image and instance map shape of ScanNet dataset')
-    ## blender flags
-    parser.add_argument("--white_bkgd", action='store_true',
-                        help='set to render synthetic data on a white bkgd (always use for dvoxels)')
     parser.add_argument("--near", type=float,
                         help='set the nearest depth')
     parser.add_argument("--far", type=float,
@@ -97,15 +81,9 @@ def config_parser():
                         help='frequency of weight ckpt saving')
     parser.add_argument("--i_test", type=int, default=50000,
                         help='frequency of testset saving')
-    parser.add_argument("--i_video", type=int, default=50000,
-                        help='frequency of render_poses video saving')
 
     # semantic instance options
-    parser.add_argument("--weakly_mode", type=str, default='weakly_ins',
-                        help="select how to weakly instance labels can be set as weakly_ins, weakly_img, weakly_click")
-    parser.add_argument("--weakly_value", type=float, default=1.0,
-                        help="select how to weakly instance labels, 0-1")
-    parser.add_argument("--over_penalize", action='store_true',
+    parser.add_argument("--penalize", action='store_true',
                         help="aim to penalize unlabeled rays to air")
     parser.add_argument("--tolerance", type=float, default=None,
                         help="move the center of Gaussian Distribution to the depth - tolerance")
@@ -151,7 +129,6 @@ def create_nerf(args):
     view_embedder, input_ch_view = get_embedder(args.multires_views, args.i_embed)
     model_coarse = \
         DM_NeRF(args.netdepth, args.netwidth, input_ch_pos, input_ch_view, [4], args.ins_num).to(args.device)
-    print(model_coarse)
 
     model_fine = \
         DM_NeRF(args.netdepth, args.netwidth, input_ch_pos, input_ch_view, [4], args.ins_num).to(args.device)
@@ -174,7 +151,7 @@ def initial():
         args.device = torch.device("cpu")
 
     log_dir = os.path.join(args.basedir, args.expname, args.log_time)
-    print(log_dir)
+    print('Logs in', log_dir)
     os.makedirs(log_dir, exist_ok=True)
     f = os.path.join(log_dir, 'args.txt')
     with open(f, 'w') as file:

@@ -6,6 +6,42 @@ import numpy as np
 from networks.helpers import r_x, r_y, r_z
 
 
+
+trans_t = lambda t: torch.Tensor([
+    [1, 0, 0, 0],
+    [0, 1, 0, 0],
+    [0, 0, 1, t],
+    [0, 0, 0, 1]]).float()
+
+rot_phi = lambda phi: torch.Tensor([
+    [1, 0, 0, 0],
+    [0, np.cos(phi), -np.sin(phi), 0],
+    [0, np.sin(phi), np.cos(phi), 0],
+    [0, 0, 0, 1]]).float()
+
+rot_theta = lambda th: torch.Tensor([
+    [np.cos(th), 0, -np.sin(th), 0],
+    [0, 1, 0, 0],
+    [np.sin(th), 0, np.cos(th), 0],
+    [0, 0, 0, 1]]).float()
+
+
+def pose_spherical(theta, phi, radius):
+    c2w = trans_t(radius)
+    c2w = rot_phi(phi / 180. * np.pi) @ c2w
+    c2w = rot_theta(theta / 180. * np.pi) @ c2w
+    c2w = torch.Tensor(np.array([[-1, 0, 0, 0], [0, 0, 1, 0], [0, 1, 0, 0], [0, 0, 0, 1]])) @ c2w
+    return c2w
+
+
+def load_mani_poses(args):
+    load_path = os.path.join(args.datadir, 'transformation_matrix.json')
+    with open(load_path, 'r') as rf:
+        obj_trans = json.load(rf)
+    rf.close()
+    return obj_trans
+
+
 def generate_poses_eval(args, defined_transformations=None):
     mani_centers = {'bathroom': [0.779178, 1.05247, 0.380208], 'bedroom': [-1.29552, 1.72703, 0.2946],
                     'dinning': [-0.633653, 0.295162, 0.279743], 'kitchen': [-2.52579, -0.103821, 1.47165],

@@ -75,10 +75,7 @@ def train():
         ###################################
 
         if i % args.i_print == 0:
-            print(
-                f"[TRAIN] Iter: {i} F_PSNR: {psnr_fine.item()} C_PSNR: {psnr_coarse.item()} Total_Loss: {total_loss.item()} \n"
-                f"RGB_Loss: {rgb_loss.item()} Ins_Loss: {ins_loss.item()} Ins_SIoU_Loss: {valid_siou_fine.item()} \n"
-                f"Ins_CE_Loss: {valid_ce_fine.item()} Ins_in_CE_Loss: {invalid_ce_fine.item()}  Reg_Loss: {emptiness_loss.item()}")
+            print(f"[TRAIN] Iter: {i} PSNR: {psnr_fine.item()} Total_Loss: {total_loss.item()} RGB_Loss: {rgb_loss.item()} Ins_Loss: {ins_loss.item()}")
 
         if i % args.i_save == 0:
             path = os.path.join(args.basedir, args.expname, args.log_time, '{:06d}.tar'.format(i))
@@ -99,7 +96,6 @@ def train():
             testsavedir = os.path.join(args.basedir, args.expname, args.log_time, 'testset_{:06d}'.format(i))
             matched_file = os.path.join(testsavedir, 'matching_log.txt')
             os.makedirs(testsavedir, exist_ok=True)
-            print('test poses shape', poses[selected_i_test].shape)
             with torch.no_grad():
                 test_poses = torch.Tensor(poses[selected_i_test].to(args.device))
                 test_imgs = images[selected_i_test]
@@ -107,7 +103,7 @@ def train():
                 render_test(position_embedder, view_embedder, model_coarse, model_fine, test_poses, hwk, args,
                             gt_imgs=test_imgs, gt_labels=test_gt_labels, ins_rgbs=ins_rgbs, savedir=testsavedir,
                             matched_file=matched_file)
-            print('Saved test set')
+            print('Training model saved!')
             args.is_train = True
             model_coarse.train()
             model_fine.train()
@@ -118,7 +114,7 @@ if __name__ == '__main__':
 
     # load data
     images, poses, hwk, i_split, gt_labels, ins_rgbs, args.ins_num = load_data(args)
-    print('Loaded blender', images.shape, hwk, args.datadir)
+    print('Load data from', args.datadir)
 
     i_train, i_test = i_split
     H, W, K = hwk

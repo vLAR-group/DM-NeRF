@@ -1,0 +1,22 @@
+expname = scene0038_00
+basedir = ./logs/scannet
+datadir = ./data/scannet/scene0038_00
+
+lrate_decay = 500
+
+N_samples = 64
+N_importance = 128
+N_train = 3072
+N_test = 4096
+
+crop_width = 600
+crop_height = 450
+resize
+
+near = 0.0
+far = 9.2
+testskip = 1
+
+penalize
+tolerance = 0.05
+deta_w = 0.05

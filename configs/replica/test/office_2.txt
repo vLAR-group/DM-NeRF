@@ -1,0 +1,22 @@
+expname = office_2
+basedir = ./logs/replica
+datadir = ./data/replica/office_2
+
+lrate_decay = 500
+
+N_samples = 64
+N_importance = 128
+N_train = 3072
+N_test = 4096
+
+near = 0.0
+far = 5.7
+testskip = 4
+
+render = True
+log_time = 202208290123
+test_model = 000000.tar
+
+penalize
+tolerance = 0.05
+deta_w = 0.05

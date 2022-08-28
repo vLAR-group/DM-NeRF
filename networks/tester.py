@@ -9,15 +9,16 @@ import torch.nn.functional as F
 
 from skimage import metrics
 from networks.render import dm_nerf
-from networks.evaluator import to8b
-from networks.evaluator import ins_eval
+from networks.evaluator import to8b, ins_eval
 from networks.helpers import get_rays_k, z_val_sample
 from tools.visualizer import render_label2img, render_gt_label2img
 
 
 def render_test(position_embedder, view_embedder, model_coarse, model_fine, render_poses, hwk, args, gt_imgs=None,
                 gt_labels=None, ins_rgbs=None, savedir=None, matched_file=None, crop_mask=None):
-    _, _, dataset_name, scene_name = args.datadir.split('/')
+    data_info = args.datadir.split('/')
+    dataset_name = data_info[2]
+    scene_name = data_info[-1]
     H, W, K = hwk
     cropped_imgs, cropped_labels, psnrs, ssims, lpipses, aps = [], [], [], [], [], []
 
@@ -83,9 +84,6 @@ def render_test(position_embedder, view_embedder, model_coarse, model_fine, rend
             rgb = full_rgb.reshape([H, W, full_rgb.shape[-1]])
             ins = full_ins.reshape([H, W, full_ins.shape[-1]])
 
-        if i == 0:
-            print(rgb.shape)
-
         if gt_imgs is not None:
             # rgb image evaluation part
             psnr = metrics.peak_signal_noise_ratio(rgb.cpu().numpy(), gt_imgs_cpu[i], data_range=1)
@@ -94,7 +92,6 @@ def render_test(position_embedder, view_embedder, model_coarse, model_fine, rend
             psnrs.append(psnr)
             ssims.append(ssim)
             lpipses.append(lpips_i.item())
-            print("RGB Evaluation standard:")
             print(f"PSNR: {psnr} SSIM: {ssim} LPIPS: {lpips_i.item()}")
 
             gt_label = gt_labels[i].cpu()
@@ -110,7 +107,6 @@ def render_test(position_embedder, view_embedder, model_coarse, model_fine, rend
                     pred_label = -1 * torch.ones([H, W])
                     ap = torch.tensor([1.0])
             else:
-                print("no crop_mask")
                 valid_gt_labels = torch.unique(gt_label)
                 valid_gt_num = len(valid_gt_labels)
                 gt_ins[..., :valid_gt_num] = F.one_hot(gt_label.long())[..., valid_gt_labels.long()]
@@ -129,8 +125,7 @@ def render_test(position_embedder, view_embedder, model_coarse, model_fine, rend
             full_map[i] = ins_map
 
             aps.append(ap)
-            print(f"Instance Evaluation standard:")
-            print(f"AP: {ap}")
+            print(f"APs: {ap}")
 
         if savedir is not None:
             rgb8 = to8b(rgb.cpu().numpy())
@@ -145,7 +140,6 @@ def render_test(position_embedder, view_embedder, model_coarse, model_fine, rend
             cv2.imwrite(gt_img_file, gt_ins_img)
             gt_ins_file = os.path.join(savedir, f'{i}_ins_gt_mask.png')
             imageio.imwrite(gt_ins_file, np.array(gt_label.cpu().numpy(), dtype=np.uint8))
-        print(i, time.time() - t)
 
     if gt_imgs is not None:
         map_result_file = os.path.join(savedir, 'matching_log.json')
@@ -154,15 +148,15 @@ def render_test(position_embedder, view_embedder, model_coarse, model_fine, rend
 
         aps = np.array(aps)
         output = np.stack([psnrs, ssims, lpipses, aps[:, 0], aps[:, 1], aps[:, 2], aps[:, 3], aps[:, 4], aps[:, 5]])
-        print(output.shape)
         output = output.transpose([1, 0])
         out_ap = np.mean(aps, axis=0)
-        mean_output = np.array([np.mean(psnrs), np.mean(ssims), np.mean(lpipses), out_ap[0], out_ap[1],
-                                out_ap[2], out_ap[3], out_ap[4], out_ap[5]])
+        mean_output = np.array([np.mean(psnrs), np.mean(ssims), np.mean(lpipses),
+                                out_ap[0], out_ap[1], out_ap[2], out_ap[3], out_ap[4], out_ap[5]])
         mean_output = mean_output.reshape([1, 9])
         output = np.concatenate([output, mean_output], 0)
         test_result_file = os.path.join(savedir, 'test_results.txt')
         np.savetxt(fname=test_result_file, X=output, fmt='%.6f', delimiter=' ')
+        print('=' * 49, 'Avg', '=' * 49)
         print('PSNR: {:.4f}, SSIM: {:.4f},  LPIPS: {:.4f} '.format(np.mean(psnrs), np.mean(ssims), np.mean(lpipses)))
-        print('APs: {:.4f}, APs: {:.4f}, APs: {:.4f}, APs: {:.4f}, APs: {:.4f}, APs: {:.4f}'
-              .format(out_ap[0], out_ap[1], out_ap[2], out_ap[3],out_ap[4], out_ap[5]))
+        print('AP50: {:.4f}, AP75: {:.4f}, AP80: {:.4f}, AP85: {:.4f}, AP90: {:.4f}, AP95: {:.4f}'
+              .format(out_ap[0], out_ap[1], out_ap[2], out_ap[3], out_ap[4], out_ap[5]))

@@ -124,11 +124,6 @@ def calculate_ap(IoUs_Metrics, gt_number, confidence=None, function_select='inte
 
 def ins_eval(pred_ins, gt_ins, gt_ins_num, ins_num, mask=None):
     if mask is None:
-        # pred_ins = pred_ins[..., :-1]
-        print(pred_ins.shape)
-        print("gt ins num", gt_ins_num)
-        # invalid_h, invalid_w = torch.where(mask == 0)
-
         pred_label = torch.argmax(pred_ins, dim=-1)
         valid_pred_labels = torch.unique(pred_label)
     else:
