@@ -62,7 +62,7 @@ For the training of our standard DM-NeRF , you can simply run the following comm
 
 ```bash
 
-CUDA_VISIBLE_DEVICES=0 python -u train_dmsr.py --config configs/train/dmsr/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u train_dmsr.py --config configs/dmsr/train/study.txt
 
 ```
 Other working modes and set-ups can be also made via the above command by choosing different config files.
@@ -78,7 +78,7 @@ For decomposition evaluation, you need set `render=True` and `log_time="your log
 
 ```bash 
 
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/study.txt
 
 ```
 
@@ -92,7 +92,7 @@ Set the target object and desired manipulated settings in a sepcific config file
 
 ```bash
 
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/manipulation/dmsr/manipulation_translation/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/translation/study.txt
 
 ```
 ##### Qualitative Evaluation
@@ -101,7 +101,7 @@ For other qualitative evaluations, you can simply change the config file and the
 
 ```bash
 
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/study.txt
 
 ```
 
