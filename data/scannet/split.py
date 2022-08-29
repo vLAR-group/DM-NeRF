@@ -140,7 +140,7 @@ class Split:
         return
 
 
-def copy_evenly(scene, number):
+def split_evenly(scene, number):
     scene_name = str.split(scene, "/")[-1]
     # statistic instances
     ins_basedir = scene + '/instance-filt-cls19'
@@ -184,4 +184,4 @@ if __name__ == '__main__':
     scene_names = sorted(glob.glob(unzip_scans_folder + '*_*'))
 
     for scene_f in scene_names:
-        copy_evenly(scene_f, 300)
+        split_evenly(scene_f, 300)
