@@ -97,10 +97,18 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/study.t
 ```
 ##### Qualitative Evaluation
 
-For other qualitative evaluations, you can simply change the config file and then run:
+For other qualitative evaluations, you can change the config file and then run:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/demo_deform.txt
+
+```
+##### Mesh Generation
+
+For the mesh generation, you can simply run:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/meshing.txt
 
 ```
 
