@@ -85,7 +85,7 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/study.t
 ```
 ##### Mesh Generation
 
-For the mesh generation, you can change the config file and then run:
+For mesh generation, you can change the config file and then run:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/meshing.txt
