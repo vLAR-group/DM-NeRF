@@ -76,7 +76,7 @@ In this paper, we use PSNR, SSIM, LPIPS for rendering evaluation, and mAPs for b
 
 ##### Quantitative Evaluation
 
-For decomposition evaluation, you need set `render=True` and `log_time="log_folder_name"` in a specific config file. And then run:
+For decomposition evaluation, you need choose a specific config file and then run:
 
 ```bash 
 
