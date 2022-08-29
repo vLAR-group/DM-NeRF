@@ -92,7 +92,7 @@ Set the target object and desired manipulated settings in a sepcific config file
 
 ```bash
 
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/translation/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/study.txt --mani_mode translation
 
 ```
 ##### Qualitative Evaluation
