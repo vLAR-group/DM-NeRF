@@ -92,15 +92,23 @@ Set the target object and desired manipulated settings in a sepcific config file
 
 ```bash
 
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/translation/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/study.txt --mani_mode translation
 
 ```
 ##### Qualitative Evaluation
 
-For other qualitative evaluations, you can change the config file change 'render=True' to 'mani_demo=True' in a specific config file, assign target objects in 'objs_info.json' and then run:
+For other qualitative evaluations, you can change the config file and then run:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/demo_deform.txt
+
+```
+##### Mesh Generation
+
+For the mesh generation, you can simply run:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/meshing.txt
 
 ```
 
