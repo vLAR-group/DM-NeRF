@@ -14,9 +14,8 @@ near = 4.0
 far = 15.0
 testskip = 1
 
-editor_demo = True
-views = 8
-log_time = 202203031813
+render = True
+log_time = 202208282311
 test_model = 000000.tar
 
 penalize

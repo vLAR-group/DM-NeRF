@@ -1,6 +1,6 @@
 expname = kitchen
 basedir = ./logs/dmsr
-datadir = ./data/dmsr_manipulation/kitchen
+datadir = ./data/dmsr/kitchen
 
 lrate_decay = 500
 
@@ -14,12 +14,12 @@ near = 0.0
 far = 15.0
 testskip = 5
 
+mani_eval = True
+mani_mode = translation
+target_label = 1
+log_time = 202208290135
+test_model = 000000.tar
 
-editor_val = True
-log_time = 202203010928
-editor_mode = translation
-target_label = 4
-
-over_penalize
+penalize
 tolerance = 0.05
 deta_w = 0.05

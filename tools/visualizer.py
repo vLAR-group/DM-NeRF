@@ -183,13 +183,13 @@ def clean_mesh(o3d_mesh, keep_single_cluster=False, min_num_cluster=200):
         triangles_to_remove = triangle_clusters != largest_cluster_idx
         o3d_mesh_clean.remove_triangles_by_mask(triangles_to_remove)
         o3d_mesh_clean.remove_unreferenced_vertices()
-        print("Show mesh with largest cluster kept")
+        # print("Show mesh with largest cluster kept")
     else:
         # remove small clusters
         triangles_to_remove = cluster_n_triangles[triangle_clusters] < min_num_cluster
         o3d_mesh_clean.remove_triangles_by_mask(triangles_to_remove)
         o3d_mesh_clean.remove_unreferenced_vertices()
-        print("Show mesh with small clusters removed")
+        # print("Show mesh with small clusters removed")
 
     return o3d_mesh_clean
 

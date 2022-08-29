@@ -19,11 +19,11 @@ class processor:
     def load_gts(self):
         poses = []
 
-        fname = os.path.join(self.basedir, f'indoor_{self.mani_mode}_test', 'rgbs')
+        fname = os.path.join(self.basedir, 'mani', self.mani_mode, 'rgbs')
         imagefile = [os.path.join(fname, f) for f in sorted(os.listdir(fname))]
         rgbs = [imageio.imread(f) for f in imagefile]
 
-        posefile = os.path.join(self.basedir, f'transforms.json')
+        posefile = os.path.join(self.basedir, 'mani', 'transforms.json')
         with open(posefile, 'r') as read_pose:
             meta = json.load(read_pose)
 
@@ -36,7 +36,7 @@ class processor:
         rgbs = np.array(rgbs)[index]
         rgbs = (rgbs / 255.).astype(np.float32)  # keep all 3 channels (RGB)
 
-        ins_path = os.path.join(self.basedir, f'indoor_{self.mani_mode}_test', 'semantic_instance')
+        ins_path = os.path.join(self.basedir, 'mani', self.mani_mode, 'semantic_instance')
         ins_files = [os.path.join(ins_path, f) for f in sorted(os.listdir(ins_path))]
         gt_labels = np.array([imageio.imread(f) for f in ins_files])
         gt_labels = gt_labels[index]

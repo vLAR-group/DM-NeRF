@@ -1,6 +1,6 @@
 expname = bedroom
-basedir = ./editor_logs/synthetic_rooms/0050
-datadir = ./data/synthetic_rooms/bedroom
+basedir = ./logs/dmsr
+datadir = ./data/dmsr/bedroom
 
 lrate_decay = 500
 
@@ -14,11 +14,12 @@ near = 3.8
 far = 13.0
 testskip = 5
 
-
-editor = True
-editor_mode = rotation
+mani_eval = True
+mani_mode = translation
 target_label = 1
+log_time = 202208290135
+test_model = 000000.tar
 
-over_penalize
+penalize
 tolerance = 0.05
 deta_w = 0.05

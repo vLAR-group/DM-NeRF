@@ -176,7 +176,7 @@ def manipulator(position_embedder, view_embedder, model_coarse, model_fine, ori_
         tar_ins_accums.append(tar_ins_accum)
 
     # exchange
-    ori_raw, tar_raw, _, tar_pred_label = exchanger(ori_raw, tar_raws, ori_ins_accum, tar_ins_accums, args.target_label)
+    ori_raw, tar_raw, _, tar_pred_label = exchanger(ori_raw, tar_raws, ori_ins_accum, tar_ins_accums, args.target_labels)
 
     """step2"""
     # calculate weights
@@ -198,7 +198,7 @@ def manipulator(position_embedder, view_embedder, model_coarse, model_fine, ori_
                                                model_fine, z_vals=tar_z_vals)
         tar_raws[idx] = tar_raw
 
-    ori_raw, tar_raws, _, _ = exchanger(ori_raw, tar_raws, ori_ins_accum, tar_ins_accums, args.target_label)
+    ori_raw, tar_raws, _, _ = exchanger(ori_raw, tar_raws, ori_ins_accum, tar_ins_accums, args.target_labels)
     # final render a rgb and ins map
     final_rgb, final_weights, final_depth, final_ins = manipulator_render(ori_raw, ori_z_vals, ori_rays[1])
 
@@ -208,7 +208,7 @@ def manipulator(position_embedder, view_embedder, model_coarse, model_fine, ori_
 def manipulator_eval(position_embedder, view_embedder, model_coarse, model_fine, ori_poses,
                      hwk, trans_dicts, save_dir, ins_rgbs, args, gt_rgbs=None, gt_labels=None):
     """move_object must between 1 to args.class_number"""
-    _, _, dataset_name, _, scene_name = args.datadir.split('/')
+    _, _, dataset_name, scene_name = args.datadir.split('/')
     H, W, K = hwk
     if gt_rgbs is not None:
         gt_rgbs_cpu = gt_rgbs.cpu().numpy()
@@ -223,11 +223,12 @@ def manipulator_eval(position_embedder, view_embedder, model_coarse, model_fine,
     color_dict = gt_color_dict[dataset_name][scene_name]
     full_map = {}
 
-    trans_dict = trans_dicts[0]
+    trans_dict = trans_dicts['transformations'][0]
     trans = torch.Tensor(trans_dict['transformation'])
     save_dir = os.path.join(save_dir, trans_dict["mode"])
     os.makedirs(save_dir, exist_ok=True)
 
+    args.target_labels = [args.target_label]
     # original
     for i, ori_pose in enumerate(ori_poses):
         time_0 = time.time()
@@ -254,6 +255,7 @@ def manipulator_eval(position_embedder, view_embedder, model_coarse, model_fine,
             tar_rays_io = tar_rays_o[step:step + N_test]  # (chuck, 3)
             tar_rays_id = tar_rays_d[step:step + N_test]  # (chuck, 3)
             tar_batch_rays = torch.stack([tar_rays_io, tar_rays_id], dim=0)
+            tar_batch_rays = tar_batch_rays[None, ...]
             # edit render
             ori_rgb, ins, tar_rgb, tar_ins = manipulator(position_embedder, view_embedder, model_coarse, model_fine,
                                                          ori_batch_rays, tar_batch_rays, args)
@@ -272,14 +274,13 @@ def manipulator_eval(position_embedder, view_embedder, model_coarse, model_fine,
 
         """calculating step for our dataset"""
         if gt_rgbs is not None:
-            print("The", i, 'Image\n')
+            print('=' * 50, i, '=' * 50)
             psnr = metrics.peak_signal_noise_ratio(ori_rgb.cpu().numpy(), gt_rgbs_cpu[i], data_range=1)
             ssim = metrics.structural_similarity(ori_rgb.cpu().numpy(), gt_rgbs_cpu[i], multichannel=True, data_range=1)
             lpips_i = lpips_vgg(ori_rgb.permute(2, 0, 1).unsqueeze(0), gt_rgbs_gpu[i].permute(2, 0, 1).unsqueeze(0))
             psnrs.append(psnr)
             ssims.append(ssim)
             lpipses.append(lpips_i.item())
-            print("RGB Evaluation standard:")
             print(f"PSNR: {psnr} SSIM: {ssim} LPIPS: {lpips_i.item()}")
 
             # calculate ap
@@ -303,8 +304,7 @@ def manipulator_eval(position_embedder, view_embedder, model_coarse, model_fine,
             full_map[i] = ins_map
 
             aps.append(ap)
-            print(f"Instance Evaluation standard:")
-            print(f"AP: {ap}")
+            print(f"APs: {ap}")
 
         # get predicted rgb
         ori_rgb_s = ori_rgb.cpu().numpy()
@@ -338,7 +338,7 @@ def manipulator_eval(position_embedder, view_embedder, model_coarse, model_fine,
         gt_ins_file = os.path.join(save_dir, f'{i}_ins_gt.png')
         cv2.imwrite(gt_ins_file, gt_ins_img)
         time_1 = time.time()
-        print(f'IMAGE[{i}] TIME: {np.round(time_1 - time_0, 6)} second')
+        # print(f'IMAGE[{i}] TIME: {np.round(time_1 - time_0, 6)} second')
 
     """save all results"""
     if gt_rgbs is not None:
@@ -357,8 +357,9 @@ def manipulator_eval(position_embedder, view_embedder, model_coarse, model_fine,
         output = np.concatenate([output, mean_output], 0)
         test_result_file = os.path.join(save_dir, 'test_results.txt')
         np.savetxt(fname=test_result_file, X=output, fmt='%.6f', delimiter=' ')
+        print('=' * 49, 'Avg', '=' * 49)
         print('PSNR: {:.4f}, SSIM: {:.4f},  LPIPS: {:.4f} '.format(np.mean(psnrs), np.mean(ssims), np.mean(lpipses)))
-        print('APs: {:.4f}, APs: {:.4f}, APs: {:.4f}, APs: {:.4f}, APs: {:.4f}, APs: {:.4f}'
+        print('AP50: {:.4f}, AP75: {:.4f}, AP80: {:.4f}, AP85: {:.4f}, AP90: {:.4f}, AP95: {:.4f}'
               .format(out_ap[0], out_ap[1], out_ap[2], out_ap[3], out_ap[4], out_ap[5]))
     return
 
@@ -373,7 +374,7 @@ def manipulator_demo(position_embedder, view_embedder, model_coarse, model_fine,
     gt_color_dict = json.load(open(gt_color_dict_path, 'r'))
     color_dict = gt_color_dict[dataset_name][scene_name]
 
-    save_dir = os.path.join(save_dir, "mani_output")
+    save_dir = os.path.join(save_dir, args.mani_type)
     os.makedirs(save_dir, exist_ok=True)
 
     # original
@@ -394,7 +395,6 @@ def manipulator_demo(position_embedder, view_embedder, model_coarse, model_fine,
             target_labels.append(obj['tar_id'])
             mani_mode = obj['mani_mode']
             if mani_mode == 'deform':
-                print("deforming......")
                 v_1 = np.linspace(1, H, H)
                 deform_func = obj['deform_func']
                 if deform_func == 'sin':
@@ -434,7 +434,7 @@ def manipulator_demo(position_embedder, view_embedder, model_coarse, model_fine,
             tar_rays_os.append(tar_rays_o)
             tar_rays_ds.append(tar_rays_d)
 
-        args.target_label = target_labels
+        args.target_labels = target_labels
         tar_rays_os = torch.stack(tar_rays_os)
         tar_rays_ds = torch.stack(tar_rays_ds)
         tar_rays_os = torch.reshape(tar_rays_os, [len(objs), -1, 3]).float()
@@ -456,8 +456,7 @@ def manipulator_demo(position_embedder, view_embedder, model_coarse, model_fine,
             tar_batch_rays = torch.stack([tar_rays_ios, tar_rays_ids], dim=1)
             # edit render
             ori_rgb, ins, tar_rgb, tar_ins = manipulator(position_embedder, view_embedder, model_coarse, model_fine,
-                                                         ori_batch_rays,
-                                                         tar_batch_rays, args)
+                                                         ori_batch_rays, tar_batch_rays, args)
             if full_rgb is None and full_ins is None:
                 full_rgb, full_ins, full_tar_rgb, full_tar_ins = ori_rgb, ins, tar_rgb, tar_ins
             else:

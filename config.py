@@ -36,7 +36,7 @@ def config_parser():
     parser.add_argument("--N_test", type=int, default=1024 * 2,
                         help='number of rays processed in parallel, decrease if running out of memory')
     parser.add_argument("--is_train", type=bool, default=True,
-                        help='number of pts sent through network in parallel, decrease if running out of memory')
+                        help='train or test')
     # semantic instance network options
 
     # rendering options
@@ -106,6 +106,8 @@ def config_parser():
                         help='do not optimize, reload weights and render out render_poses path')
     parser.add_argument("--mani_mode", type=str, default='rotation',
                         help='select operation mode includes translation, rotation, scale, multi')
+    parser.add_argument("--mani_type", type=str, default='rigid',
+                        help='select operation type includes rigid, deform')
     parser.add_argument("--views", type=int, default=720,
                         help="the amount of generated view")
     parser.add_argument("--translation", type=bool, default=False,

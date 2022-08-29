@@ -1,6 +1,6 @@
 expname = bathroom
 basedir = ./logs/dmsr
-datadir = ./data/dmsr_manipulation/bathroom
+datadir = ./data/dmsr/bathroom
 
 lrate_decay = 500
 
@@ -17,7 +17,7 @@ testskip = 5
 
 editor_val = True
 log_time = 202203010929
-editor_mode = scale
+editor_mode = multi
 target_label = 7
 
 over_penalize

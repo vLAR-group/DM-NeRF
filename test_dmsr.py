@@ -13,7 +13,6 @@ from tools.mesh_generator import mesh_main
 def test():
     model_coarse.eval()
     model_fine.eval()
-    args.is_train = False
     with torch.no_grad():
         if args.render:
             print('Rendering......')
@@ -31,7 +30,7 @@ def test():
             print('Rendering Done', testsavedir)
 
         elif args.mani_eval:
-            print('Manipulating......')
+            print('Manipulating', args.mani_mode,  '......')
             """this operations list can re-design"""
             in_images = torch.Tensor(images)
             in_instances = torch.Tensor(instances).type(torch.int8)
@@ -47,24 +46,21 @@ def test():
             print('Manipulating Done', testsavedir)
 
         elif args.mani_demo:
-            print('Manipulating......')
-            """this operations list can re-design"""
-            print('Loaded blender', hwk, args.datadir)
+            print('Manipulating Demo......')
             int_view_poses = torch.Tensor(view_poses)
             pose_generator.generate_poses_demo(objs, args)
-            obj_trans = loader_dmsr.load_mani_poses(args)
+            obj_trans = pose_generator.load_mani_demo_poses(args)
             testsavedir = os.path.join(args.basedir, args.expname, args.log_time,
                                        'mani_demo_{:06d}'.format(iteration))
             os.makedirs(testsavedir, exist_ok=True)
             manipulator.manipulator_demo(position_embedder, view_embedder, model_coarse, model_fine, poses, hwk,
                                          save_dir=testsavedir, ins_rgbs=ins_colors, args=args, objs=objs,
                                          objs_trans=obj_trans, view_poses=int_view_poses, ins_map=ins_map)
-            print('Manipulating Done', testsavedir)
+            print('Manipulating Demo Done', testsavedir)
 
         elif args.mesh:
             print("Meshing......")
-            mesh_file = os.path.join(args.datadir, "mesh.ply")
-            assert os.path.exists(mesh_file)
+            mesh_file = os.path.join(args.datadir, args.expname + '.ply')
             trimesh_scene = trimesh.load(mesh_file, process=False)
             meshsavedir = os.path.join(args.basedir, args.expname, args.log_time, 'mesh_{:06d}'.format(iteration))
             os.makedirs(meshsavedir, exist_ok=True)
@@ -77,6 +73,7 @@ def test():
 if __name__ == '__main__':
 
     args = initial()
+    args.is_train = False
 
     # load data
     if args.mani_eval:

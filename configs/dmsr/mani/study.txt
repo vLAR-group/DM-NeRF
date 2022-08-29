@@ -1,6 +1,6 @@
-expname = dinning
+expname = study
 basedir = ./logs/dmsr
-datadir = ./data/dmsr_manipulation/dinning
+datadir = ./data/dmsr/study
 
 lrate_decay = 500
 
@@ -10,15 +10,16 @@ N_train = 3072
 N_test = 4096
 
 
-near = 1.5
-far = 8.0
+near = 4.0
+far = 15.0
 testskip = 5
 
-editor_val = True
-log_time = 202203010928
-editor_mode = multi
+mani_eval = True
+mani_mode = translation
 target_label = 1
+log_time = 202208282311
+test_model = 000000.tar
 
-over_penalize
+penalize
 tolerance = 0.05
 deta_w = 0.05

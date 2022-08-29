@@ -29,14 +29,16 @@ DM-NeRF uses a Conda environment that makes it easy to install all dependencies.
 
 1. Create the `DM-NeRF` Conda environment (Python 3.7) with [miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
+```bash
+conda create --name DM-NeRF python=3.7
+conda activate DM-NeRF
+```
+
 2. Install all dependencies by running:
 
 ```bash
-pip install pytorch==1.8.1 torchVision==0.9.1 torchaudio===0.8.1
-pip install -r environment.txt
+pip install -r requirements.txt
 ```
-
-3. Activate the environment: `conda activate DM-NeRF`.
 
 ### 4.1 Datasets
 
@@ -60,7 +62,7 @@ For the training of our standard DM-NeRF , you can simply run the following comm
 
 ```bash
 
-CUDA_VISIBLE_DEVICES=0 python -u train_dmsr.py --config configs/train/dmsr/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u train_dmsr.py --config configs/dmsr/train/study.txt
 
 ```
 Other working modes and set-ups can be also made via the above command by choosing different config files.
@@ -72,11 +74,11 @@ In this paper, we use PSNR, SSIM, LPIPS for rendering evaluation, and mAPs for b
 
 #### (1) Decomposition
 
-For decomposition evaluation, you need set `render=True` and `log_time="your log folder name"` in a config file. And then run:
+For decomposition evaluation, you need set `render=True` and `log_time="log_folder_name"` in a config file. And then run:
 
 ```bash 
 
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/study.txt
 
 ```
 
@@ -90,16 +92,15 @@ Set the target object and desired manipulated settings in a sepcific config file
 
 ```bash
 
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/manipulation/dmsr/manipulation_translation/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/translation/study.txt
 
 ```
 ##### Qualitative Evaluation
 
-For other qualitative evaluations, you can simply change the config file and then run:
+For other qualitative evaluations, you can change the config file change 'render=True' to 'mani_demo=True' in a specific config file, assign target objects in 'objs_info.json' and then run:
 
 ```bash
-
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/test/dmsr/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/study.txt
 
 ```
 

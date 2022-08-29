@@ -10,11 +10,11 @@ np.random.seed(0)
 
 
 class rgb_processor:
-    def __init__(self, basedir, is_train, testskip=1):
+    def __init__(self, args):
         super(rgb_processor, self).__init__()
-        self.basedir = basedir
-        self.testskip = testskip
-        self.is_train = is_train
+        self.basedir = args.datadir
+        self.testskip = args.testskip
+        self.args = args
 
     def load_rgb(self):
         splits = ['train', 'test']
@@ -35,7 +35,7 @@ class rgb_processor:
 
             rgbs = [imageio.imread(f) for f in imagefile]
 
-            posefile = os.path.join(self.basedir, s, f'transforms.json')
+            posefile = os.path.join(self.basedir, s, 'transforms.json')
             with open(posefile, 'r') as read_pose:
                 meta = json.load(read_pose)
 
@@ -58,16 +58,20 @@ class rgb_processor:
             all_pose = all_pose.reshape((all_pose.shape[0], 4, 4))
 
         i_split = [np.arange(counts[i], counts[i + 1]) for i in range(2)]
-        if self.is_train:
-            objs, view_id, ins_map = None, None, None
-        else:
-            objs_info_fname = os.path.join(self.basedir, 'objs_info.json')
+
+        if self.args.mesh or self.args.mani_demo:
+            if self.args.mani_type == 'rigid':
+                objs_info_fname = os.path.join(self.basedir, 'mani', 'objs_info_rigid.json')
+            else:
+                objs_info_fname = os.path.join(self.basedir, 'mani', 'objs_info_deform.json')
             with open(objs_info_fname, 'r') as f_obj_info:
                 objs_info = json.load(f_obj_info)
             f_obj_info.close()
             objs = objs_info["objects"]
             view_id = objs_info["view_id"]
             ins_map = objs_info["ins_map"]
+        else:
+            objs, view_id, ins_map = None, None, None
 
         return all_rgb, all_pose, i_split, angle_x, objs, view_id, ins_map
 
@@ -110,8 +114,7 @@ class ins_processor:
 
 def load_data(args):
     # load color image RGB
-    imgs, poses, i_split, camera_angle_x, objs, view_id, ins_map = rgb_processor(args.datadir, args.is_train,
-                                                                                 testskip=args.testskip).load_rgb()
+    imgs, poses, i_split, camera_angle_x, objs, view_id, ins_map = rgb_processor(args).load_rgb()
     # add another load class which assigns to semantic labels
     if args.is_train:
         view_poses = None

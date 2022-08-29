@@ -1,6 +1,6 @@
 expname = study
 basedir = ./logs/dmsr
-datadir = ./data/dmsr/manipulation/study
+datadir = ./data/dmsr/study
 
 lrate_decay = 500
 
@@ -12,13 +12,13 @@ N_test = 4096
 
 near = 4.0
 far = 15.0
-testskip = 5
+testskip = 1
 
-editor_val = True
-log_time = 202203031813
-editor_mode = multi
-target_label = 8
+mesh = True
+views = 8
+log_time = 202208282311
+test_model = 000000.tar
 
-over_penalize
+penalize
 tolerance = 0.05
 deta_w = 0.05

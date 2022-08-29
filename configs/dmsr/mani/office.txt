@@ -1,6 +1,6 @@
-expname = bedroom
+expname = office
 basedir = ./logs/dmsr
-datadir = ./data/dmsr_manipulation/bedroom
+datadir = ./data/dmsr/office
 
 lrate_decay = 500
 
@@ -10,16 +10,16 @@ N_train = 3072
 N_test = 4096
 
 
-near = 3.8
-far = 13.0
+near = 2.2
+far = 10.0
 testskip = 5
 
-editor_val = True
-log_time = 202203010929
-editor_mode = scale
+mani_eval = True
+mani_mode = translation
 target_label = 1
+log_time = 202208290135
+test_model = 000000.tar
 
-
-over_penalize
+penalize
 tolerance = 0.05
 deta_w = 0.05
