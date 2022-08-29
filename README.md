@@ -97,10 +97,10 @@ CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/study.t
 ```
 ##### Qualitative Evaluation
 
-For other qualitative evaluations, you can change the config file change 'render=True' to 'mani_demo=True' in a specific config file, assign target objects in 'objs_info.json' and then run:
+For other qualitative evaluations, you can simply change the config file and then run:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/study.txt
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/demo_deform.txt
 
 ```
 
