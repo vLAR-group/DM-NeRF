@@ -74,11 +74,21 @@ In this paper, we use PSNR, SSIM, LPIPS for rendering evaluation, and mAPs for b
 
 #### (1) Decomposition
 
-For decomposition evaluation, you need set `render=True` and `log_time="log_folder_name"` in a config file. And then run:
+##### Quantitative Evaluation
+
+For decomposition evaluation, you need set `render=True` and `log_time="log_folder_name"` in a specific config file. And then run:
 
 ```bash 
 
 CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/study.txt
+
+```
+##### Mesh Generation
+
+For mesh generation, you can change the config file and then run:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/meshing.txt
 
 ```
 
@@ -101,14 +111,6 @@ For other qualitative evaluations, you can change the config file and then run:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/mani/demo_deform.txt
-
-```
-##### Mesh Generation
-
-For the mesh generation, you can simply run:
-
-```bash
-CUDA_VISIBLE_DEVICES=0 python -u test_dmsr.py --config configs/dmsr/test/meshing.txt
 
 ```
 
