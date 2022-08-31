@@ -4,7 +4,7 @@
 
 ## DM-NeRF: 3D Scene Geometry Decomposition and Manipulation from 2D Images
 [Bing Wang](https://www.cs.ox.ac.uk/people/bing.wang/), [Lu Chen](https://chenlu-china.github.io/), [Bo Yang<sup>*</sup>](https://yang7879.github.io/) <br />
-[**Paper**](https://arxiv.org/abs/2208.07227) | [**Video**](https://www.youtube.com/watch?v=iE0RwmdLIzk) | [**DM-SR**](https://github.com/vLAR-group/DM-NeRF)
+[**Paper**](https://arxiv.org/abs/2208.07227) | [**Video**](https://www.youtube.com/watch?v=iE0RwmdLIzk) | [**DM-SR**](https://www.dropbox.com/s/1k75m38vahizbp9/dmsr.zip?dl=0)
 
 
 <p align="center"> <img src="/figs/architecture.png" width="80%"> </p>
@@ -44,13 +44,13 @@ pip install -r requirements.txt
 
 In this paper, we consider the following three different datasets:
 
-#### (1) [DM-SR](https://github.com/vLAR-group/DM-NeRF)
+#### (1) [DM-SR](https://www.dropbox.com/s/1k75m38vahizbp9/dmsr.zip?dl=0)
 
 To the best of our knowledge, there is no existing 3D scene dataset suitable for quantitative evaluation of geometry manipulation. Therefore, we create a synthetic dataset with 8 types of different and complex indoor rooms, called DM-SR. The room types and designs follow [Hypersim Dataset](https://github.com/apple/ml-hypersim). Overall, we firstly render the static scenes, and then manipulate each scene followed by second round rendering. Each scene has a physical size of about 12x12x3 meters with around 8 objects.  We will keep updating it for future research in the community. 
 
-#### (2) [Replica](https://github.com/facebookresearch/Replica-Dataset)
+#### (2) [Replica](https://www.dropbox.com/s/t1bref0zrmbq1gl/replica.zip?dl=0)
 
-In this paper, we use 7 scenes `office0, office2, office3, office4, room0, room1, room2` from the [Replica Dataset](https://github.com/facebookresearch/Replica-Dataset). We request the authors of [Semantic-NeRF](https://github.com/Harry-Zhi/semantic_nerf) to generate color images and 2D object masks with camera poses at 640x480 pixels for each of 7 scenes. Each scene has 59~93 objects with very diverse sizes. Details of camera settings and trajectories can be found in the Semantic-NeRF repository.
+In this paper, we use 7 scenes `office0, office2, office3, office4, room0, room1, room2` from the [Replica Dataset](https://github.com/facebookresearch/Replica-Dataset). We request the authors of [Semantic-NeRF](https://github.com/Harry-Zhi/semantic_nerf) to generate color images and 2D object masks with camera poses at 640x480 pixels for each of 7 scenes. Each scene has 59~93 objects with very diverse sizes. Details of camera settings and trajectories can be found [here](https://www.dropbox.com/s/t1bref0zrmbq1gl/replica.zip?dl=0).
 
 #### (3) [ScanNet](http://www.scan-net.org/)
 
