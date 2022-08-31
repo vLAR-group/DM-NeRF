@@ -46,7 +46,7 @@ In this paper, we consider the following three different datasets:
 
 #### (1) [DM-SR](https://www.dropbox.com/s/1k75m38vahizbp9/dmsr.zip?dl=0)
 
-To the best of our knowledge, there is no existing 3D scene dataset suitable for quantitative evaluation of geometry manipulation. Therefore, we create a synthetic dataset with 8 types of different and complex indoor rooms, called DM-SR. The room types and designs follow [Hypersim Dataset](https://github.com/apple/ml-hypersim). Overall, we firstly render the static scenes, and then manipulate each scene followed by second round rendering. Each scene has a physical size of about 12x12x3 meters with around 8 objects.  We will keep updating it for future research in the community. 
+To the best of our knowledge, there is no existing 3D scene dataset suitable for quantitative evaluation of geometry manipulation. Therefore, we create a synthetic dataset with 8 types of different and complex indoor rooms, called DM-SR. The room types and designs follow [Hypersim Dataset](https://github.com/apple/ml-hypersim). Overall, we firstly render the static scenes, and then manipulate each scene followed by second round rendering. Each scene has a physical size of about 12x12x3 meters with around 8 objects.  We will keep updating [DM-SR](https://www.dropbox.com/s/1k75m38vahizbp9/dmsr.zip?dl=0) for future research in the community. 
 
 #### (2) [Replica](https://www.dropbox.com/s/t1bref0zrmbq1gl/replica.zip?dl=0)
 
