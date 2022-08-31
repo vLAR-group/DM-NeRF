@@ -132,6 +132,7 @@ If you find our work useful in your research, please consider citing:
 Licensed under the CC BY-NC-SA 4.0 license, see [LICENSE](./LICENSE).
 
 ### Updates
+* 31/8/2022: Data release！
 * 25/8/2022: Code release！
 * 15/8/2022: Initial release！
 
